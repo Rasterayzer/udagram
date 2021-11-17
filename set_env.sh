@@ -3,7 +3,7 @@
 export $POSTGRES_USERNAME=trouvinez
 export $POSTGRES_PASSWORD=Apteryx02
 export $POSTGRES_HOST=cdr.cole4cytpi1a.us-east-1.rds.amazonaws.com
-export $POSTGRES_DB=cdr
+export $POSTGRES_DB=postgres
 export $AWS_BUCKET=arn:aws:s3:::udagram-p3-209343855061-dev
 export $AWS_REGION=us-east-1
 export $AWS_PROFILE=default
