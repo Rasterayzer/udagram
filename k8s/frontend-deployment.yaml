@@ -6,7 +6,7 @@ metadata:
     app: frontend
     api: external
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: frontend
@@ -17,7 +17,7 @@ spec:
         api: external        
     spec:
       containers:
-      - image: rasterayzer/udagram-frontend
+      - image: rasterayzer/udagram-frontend:v1
         name: frontend
         imagePullPolicy: Always          
         ports:

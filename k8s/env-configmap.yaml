@@ -2,11 +2,12 @@ apiVersion: v1
 kind: ConfigMap
 data:
   # Postgres login is sensitive
-  POSTGRESS_HOST: cdr.cole4cytpi1a.us-east-1.rds.amazonaws.com
-  POSTGRESS_DB: postgres
+  POSTGRES_HOST: cdr.cole4cytpi1a.us-east-1.rds.amazonaws.com
+  POSTGRES_DATABASE: postgres
   AWS_BUCKET: arn:aws:s3:::udagram-p3-209343855061-dev
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   URL: http://localhost:8100
+  JWT_SECRET: p3-project
 metadata:
   name: env-config

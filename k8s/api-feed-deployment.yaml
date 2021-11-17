@@ -15,37 +15,17 @@ spec:
         app: backend-feed
     spec:
       containers:
-      - image: rasterayzer/udagram-api-feed
+      - image: rasterayzer/udagram-api-feed:v2
         name: backend-feed
         imagePullPolicy: Always  
         resources:
           requests:
-            memory: "64Mi"
+            memory: "200Mi"
             cpu: "250m"
           limits:
             memory: "1024Mi"
             cpu: "500m"                  
         env:
-        - name: POSTGRESS_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: env-secret
-              key: POSTGRESS_USERNAME   
-        - name: POSTGRESS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: env-secret
-              key: POSTGRESS_PASSWORD
-        - name: POSTGRESS_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: POSTGRESS_HOST
-        - name: POSTGRESS_DB
-          valueFrom:
-            configMapKeyRef:
-              name: env-config
-              key: POSTGRESS_DB
         - name: URL
           valueFrom:
             configMapKeyRef:
@@ -68,13 +48,33 @@ spec:
               key: AWS_REGION
         - name: JWT_SECRET
           valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DATABASE
+        - name: POSTGRES_USERNAME
+          valueFrom:
             secretKeyRef:
               name: env-secret
-              key: JWT_SECRET    
+              key: POSTGRES_USERNAME 
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
         volumeMounts:
-          - name: aws-secret
-            mountPath: "/root/.aws/"
-            readOnly: true        
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true        
       restartPolicy: Always
       volumes:
       - name: aws-secret
